@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise</title>
+</head>
+
+<body>
+    <!-- - https://kktix.com/events.json 用表格印出所有活動
+            - 限制使用 axios、async、await
+            - 不能使用 jQ
+            - title、summary、content、author (用 a 標籤)、published -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js' integrity='sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==' crossorigin='anonymous'></script>
+    <script>
+
+        // 取資料
+        axios.get('https://kktix.com/events.json')
+            .then(response => {
+                console.log(response)
+                console.log(response.data.entry)
+
+                document.write('<table>')
+
+                for (let i = 0; i < response.data.entry.length; i++) {
+                    document.write('<tr>')
+                    // title
+                    document.write(`<td>${response.data.entry[i].title}</td>`)
+                    // console.log(response.data.entry[i].title)
+
+                    // summary
+                    document.write(`<td>${response.data.entry[i].summary}</td>`)
+
+                    // content
+                    document.write(`<td>${response.data.entry[i].content}</td>`)
+
+                    // author (用 a 標籤)
+                    document.write(`<td>
+                        <a href='${response.data.entry[i].author.uri}'>
+                            ${response.data.entry[i].author.name}
+                            </a>
+                        </td>`)
+
+                    // published
+                    document.write(`<td>${response.data.entry[i].published}</td>`)
+
+
+                    document.write('</tr>')
+                }
+
+                // console.log(response.data.content)
+                // console.log(response.data.author)
+                // console.log(response.data.published)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        document.write('</table>')
+    </script>
+</body>
+
+</html>

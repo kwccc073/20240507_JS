@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>try catch</title>
+</head>
+
+<body>
+    try catch 可以處理程式的錯誤，讓程式不會因為錯誤而影響執行
+    也可以利用這種寫法進行流程控制
+    <script>
+        /*單獨寫alertt('123')的話
+          會顯示Uncaught ReferenceError: alertt is not defined at try.html: 12: 9
+          且後面都無法執行*/
+
+        // 當try{}發生錯誤的話會直接跳到catch{}
+        try {
+            // alertt是錯誤的
+            alertt('123')
+            // 因為上面錯誤會直接跳到catch，這個不會執行
+            console.log('456')
+        } catch (error) {
+            //錯誤的物件
+            console.log(error)
+            //錯誤的名稱
+            console.log(error.name)
+            //錯誤的訊息
+            console.log(error.message)
+        }
+        console.log('abc')
+    </script>
+</body>
+
+</html>

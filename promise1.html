@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise1</title>
+</head>
+
+<body>
+    <script>
+        const pass = true
+        // 設function
+        const getMoney = new Promise((resolve, reject) => {
+            if (pass) {
+                // 完成承諾
+                resolve('恭喜')
+            } else {
+                // 拒絕承諾
+                reject(new Error('QQ'))
+            }
+        })
+
+        // 執行getMoney這個function
+        getMoney
+            // 當Promise為resolve時執行.then()
+            // 這裡的result 會是上方resolve()內的東西
+            .then(result => {
+                console.log(result)
+            })
+            //當Promise reject時執行.catch()
+            // 這裡的result 會是上方reject()內的東西
+            .catch(error => {
+                console.log(error)
+            })
+            //不管成功或失敗都會執行
+            .finally(() => {
+                console.log('結束')
+            })
+    </script>
+</body>
+
+</html>
